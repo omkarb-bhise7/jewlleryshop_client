@@ -23,8 +23,8 @@ const SalesForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res1 = await axios.get('${process.env.REACT_APP_BACKEND_URL}api/products');
-        const res2 = await axios.get('${process.env.REACT_APP_BACKEND_URL}api/customers');
+        const res1 = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/products`);
+        const res2 = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/customers`);
         setProducts(res1.data);
         setCustomers(res2.data);
       } catch (err) {
@@ -72,7 +72,7 @@ const SalesForm = () => {
       let finalCustomerId = customerId;
 
       if (!finalCustomerId && newCustomerName.trim() && newCustomerAddress.trim() && newCustomerContact.trim()) {
-        const newCustomer = await axios.post('${process.env.REACT_APP_BACKEND_URL}api/customers', {
+        const newCustomer = await axios.post(`${process.env.REACT_APP_BACKEND_URL}api/customers`, {
           name: newCustomerName.trim(),
           address: newCustomerAddress.trim(),
           contact: newCustomerContact.trim()
@@ -98,7 +98,7 @@ const SalesForm = () => {
 
   const handleAddLedger = async () => {
     try {
-      await axios.post('${process.env.REACT_APP_BACKEND_URL}api/ledger', {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}api/ledger`, {
         sale: savedSaleId,
         customer: customerId,
         total: totalAmount,
@@ -116,7 +116,7 @@ const SalesForm = () => {
 
   const handleMarkAsPaid = async () => {
     try {
-      const ledgerRes = await axios.post('${process.env.REACT_APP_BACKEND_URL}api/ledger', {
+      const ledgerRes = await axios.post(`${process.env.REACT_APP_BACKEND_URL}api/ledger`, {
         sale: savedSaleId,
         customer: customerId,
         total: totalAmount,
